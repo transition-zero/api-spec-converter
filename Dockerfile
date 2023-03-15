@@ -1,19 +1,8 @@
 FROM node
 
-# Create app directory
-WORKDIR /usr/src/app
+ADD . api-spec-converter/
+RUN cd api-spec-converter && npm install
 
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
-COPY package*.json ./
+WORKDIR /api-spec-converter
 
-RUN npm install
-# If you are building your code for production
-# RUN npm ci --only=production
-
-# Bundle app source
-COPY . .
-
-#EXPOSE 8080
-#CMD [ "node", "server.js" ]
+RUN npm install api-spec-converter
